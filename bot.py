@@ -304,14 +304,14 @@ async def cmd_sonuclar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         msg += f"<b>{m['home_team']} {hg}–{ag} {m['away_team']}</b> {arrow}  <i>{date}</i>\n"
     await update.message.reply_text(msg, parse_mode='HTML')
 
-# ─── /fikstür ────────────────────────────────────────────────────────────────
-async def cmd_fikstür(update: Update, context: ContextTypes.DEFAULT_TYPE):
+# ─── /fikstur ────────────────────────────────────────────────────────────────
+async def cmd_fikstur(update: Update, context: ContextTypes.DEFAULT_TYPE):
     league_id = context.args[0].lower() if context.args else None
     if not league_id:
         leagues = get_leagues()
         msg = "📅 <b>Fikstür</b>\n\nLig belirtin:\n\n"
         for l in leagues:
-            msg += f"{l.get('emoji','')} <code>/fikstür {l['id']}</code> — {l['name']}\n"
+            msg += f"{l.get('emoji','')} <code>/fikstur {l['id']}</code> — {l['name']}\n"
         return await update.message.reply_text(msg, parse_mode='HTML')
     state = get_league_state(gid(update), league_id)
     if not state:
@@ -478,7 +478,7 @@ async def cmd_yardim(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "📊 <b>Lig &amp; Sonuçlar</b>\n"
         "/puan &lt;lig_id&gt; — Puan durumu\n"
         "/sonuclar — Son maç sonuçları\n"
-        "/fikstür &lt;lig_id&gt; — Yaklaşan maçlar\n\n"
+        "/fikstur &lt;lig_id&gt; — Yaklaşan maçlar\n\n"
         "⚙️ <b>Admin</b>\n"
         "/ligbaslat &lt;lig_id&gt; — Lig başlat\n"
         "/ligdurdur &lt;lig_id&gt; — Ligi durdur\n"
@@ -510,7 +510,7 @@ def main():
         ('transfer', cmd_transfer), ('transferara', cmd_transferara),
         ('oyuncu', cmd_oyuncu), ('pazar', cmd_pazar),
         ('puan', cmd_puan), ('sonuclar', cmd_sonuclar),
-        ('fikstür', cmd_fikstür), ('fikstúr', cmd_fikstür),
+        ('fikstur', cmd_fikstur),
         ('admin', cmd_admin), ('ligbaslat', cmd_ligbaslat),
         ('ligdurdur', cmd_ligdurdur), ('ligsifirla', cmd_ligsifirla),
         ('ligler', cmd_ligler), ('adminpuan', cmd_adminpuan),
